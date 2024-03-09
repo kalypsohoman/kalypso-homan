@@ -1,0 +1,84 @@
+
+<script>
+// @ts-nocheck
+
+    import { page } from "$app/stores";
+    import { fly, scale } from 'svelte/transition';
+    import { quadOut } from 'svelte/easing';
+    import { NavMenu } from "$lib";
+    let open = false;
+    let links = ['coding', 'art', 'about']
+
+    /**
+	 * @type {string | null}
+	 */
+    let currentPage;
+    page.subscribe(page => currentPage = page.route.id)
+</script>
+
+
+<nav>
+    <a href="/">
+        <img src='images/nav-logo.png' alt='Home'/>
+    </a>
+    <NavMenu />
+    <div class='links'>
+        {#each links as link, i}
+            {#if i !== 0}
+                <p>•</p>
+            {/if}
+            <a class={(currentPage === '/' + link) ? 'active' : ''} href={'/' + link}>{link.toUpperCase()}</a>
+        {/each}
+    </div>
+</nav>
+
+<slot/>
+
+
+<style lang='scss'>
+    nav {
+        height: 80px;
+        border-bottom: 1px solid white;
+        display: flex;
+        align-items: center;
+        
+        a:first-child {
+            margin-right: auto; // Pushes the first child to the left and others to the right
+            img {
+                width: 200px;
+                margin: 10px;
+            }
+        }
+
+        .links {
+            display: flex;
+            align-items: flex-end;
+            height: 40px;
+
+            a {
+                color: white;
+                text-decoration: none;
+                display: flex;
+                margin-inline: 30px;
+                font-family: "Mourgen", sans-serif;
+                font-size: 2rem;
+            }
+
+            p{
+                display: contents;
+                font-size: 3rem;
+            }
+
+            .active {
+                color: orange;
+            }
+        }
+
+        // MOBILE STYLING
+        @media (max-width: 850px) {
+            .links {
+                display: none; // Hide text links and dots
+            }
+        }
+    }
+</style>

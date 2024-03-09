@@ -1,0 +1,37 @@
+@font-face {
+    font-family: "Mourgen";
+    src: url('fonts/Mourgen.otf') format('opentype');
+}
+
+@font-face {
+    font-family: "Caviar Dreams";
+    src: url('fonts/CaviartDreams.ttf') format('typeface');
+}
+
+@font-face {
+    font-family: "Enigma Bold";
+    src: url('fonts/EnigmaBold.otf') format('opentype');
+}
+
+body {
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+}
+
+.page {
+    margin-top: 20px;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Caviar Dreams';
+}
+
+li {
+    font-family: 'Enigma Bold';
+    list-style: none;
+}
+
+
