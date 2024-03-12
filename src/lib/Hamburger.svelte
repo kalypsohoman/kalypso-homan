@@ -1,6 +1,5 @@
 <script lang="ts">
     export let open: boolean = false;
-    export let type: string = 'spin';
 </script>
 
 <button
