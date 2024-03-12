@@ -1,11 +1,16 @@
 @font-face {
-    font-family: "Mourgen";
-    src: url('fonts/Mourgen.otf') format('opentype');
+    font-family: 'Aesthico';
+    src: url('fonts/aesthico-webfont.woff') format('woff');
 }
 
 @font-face {
     font-family: "Caviar Dreams";
     src: url('fonts/CaviartDreams.ttf') format('typeface');
+}
+
+@font-face {
+    font-family: "Mourgen";
+    src: url('fonts/Mourgen.otf') format('opentype');
 }
 
 @font-face {
