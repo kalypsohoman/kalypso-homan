@@ -53,20 +53,19 @@
         .links {
             display: flex;
             align-items: flex-end;
-            height: 40px;
+            height: 80px;
 
             a {
                 color: white;
                 text-decoration: none;
                 display: flex;
-                margin-inline: 30px;
                 font-family: "Mourgen", sans-serif;
-                font-size: 2rem;
+                font-size: 3rem;
             }
 
             p{
                 display: contents;
-                font-size: 3rem;
+                font-size: 4rem;
             }
 
             .active {
@@ -77,7 +76,7 @@
         // MOBILE STYLING
         @media (max-width: 850px) {
             .links {
-                display: none; // Hide text links and dots
+                display: none;
             }
         }
     }
