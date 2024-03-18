@@ -7,7 +7,6 @@
     import { quadOut } from 'svelte/easing';
     import { NavMenu } from "$lib";
     let open = false;
-    let links = ['coding', 'art', 'about']
 
     /**
 	 * @type {string | null}
@@ -16,24 +15,21 @@
     page.subscribe(page => currentPage = page.route.id)
 </script>
 
-
 <nav>
     <a href="/">
         <img src='images/nav-logo.png' alt='Home'/>
     </a>
     <NavMenu />
     <div class='links'>
-        {#each links as link, i}
-            {#if i !== 0}
-                <p>•</p>
-            {/if}
-            <a class={(currentPage === '/' + link) ? 'active' : ''} href={'/' + link}>{link.toUpperCase()}</a>
-        {/each}
+        <a class={(currentPage === '/') ? 'active' : ''} href={'/'}>CODE</a>
+        <p>•</p>
+        <a class={(currentPage === '/about') ? 'active' : ''} href={'/about'}>ABOUT</a>
     </div>
 </nav>
 
-<slot/>
-
+<div class='main'>    
+    <slot/>
+</div>
 
 <style lang='scss'>
     nav {
