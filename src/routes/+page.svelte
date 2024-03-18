@@ -1,22 +1,17 @@
 <script>
+    import { codeProjects, Project } from "$lib";
 </script>
 
-<div class='logo-container'>
-    <img class='logo' src='images/kalypso.png' alt='kalypso'>
-</div>
+<img class='logo' src='images/kalypso.png' alt='kalypso'>
+{#each codeProjects as codeProject}
+    <Project options={codeProject}/>
+{/each}
 
 <style lang=scss>
-.logo-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 .logo {
-    width: 70vh;
-    height: 25%;
-    position: absolute;
-    top: 10%;
+    width: min(80%, 70vh);
+    margin: 150px auto
     }
 </style>
     
