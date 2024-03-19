@@ -14,7 +14,7 @@
 
 <style lang="scss">
 .hamburger {
-    padding: var(--padding, 15px);
+    padding: 15px;
     display: none;
     cursor: pointer;
 
@@ -36,25 +36,25 @@
     }
 
     &:hover {
-        opacity: var(--hover-opacity, 0.7);
+        opacity: 0.7;
     }
 
     &.is-active {
         &:hover {
-            opacity: var(--hover-opacity-active, var(--hover-opacity, 0.7));
+            opacity: 0.7;
         }
 
         .hamburger-inner,
         .hamburger-inner::before,
         .hamburger-inner::after {
-            background-color: var(--active-color, var(--color, white));
+            background-color: white;
         }
     }
 }
 
 .hamburger-box {
-    width: var(--layer-width, 30px);
-    height: calc(var(--layer-height, 4px) * 3 + var(--layer-spacing, 6px) * 2);
+    width: 30px;
+    height: calc(4px * 3 + 6px * 2);
     display: inline-block;
     position: relative;
 }
@@ -62,15 +62,15 @@
 .hamburger-inner {
     display: block;
     top: 50%;
-    margin-top: var(--layer-height, 4px) / -2;
+    margin-top: 4px / -2;
 
     &,
     &::before,
     &::after {
-        width: var(--layer-width, 30px);
-        height: var(--layer-height, 4px);
-        background-color: var(--color, white);
-        border-radius: var(--border-radius, 4px);
+        width: 30px;
+        height: 4px;
+        background-color: white;
+        border-radius: 4px;
         position: absolute;
         transition-property: transform;
         transition-duration: 0.15s;
@@ -84,13 +84,11 @@
     }
 
     &::before {
-        top: calc((var(--layer-spacing, 6px) + var(--layer-height, 4px)) * -1);
+        top: calc((6px + 4px) * -1);
     }
 
     &::after {
-        bottom: calc(
-            (var(--layer-spacing, 6px) + var(--layer-height, 4px)) * -1
-        );
+        bottom: calc((6px + 4px) * -1);
     }
 }
 
