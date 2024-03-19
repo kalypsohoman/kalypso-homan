@@ -57,10 +57,6 @@ TODO: fix weird scrolling behavior that pauses scroll at specific intervals
 
 //REACTIVE STYLINGS
 @media (max-width: 850px) {
-    .project-icon {
-        margin: auto;
-        margin-bottom: 20px;
-    }
     .projects {
         display: flex;
         flex-direction: column;
