@@ -67,6 +67,7 @@
     @media (max-width: 850px) {
         .hamburger-menu-contents {
             display: flex;
+            box-shadow: inset 0 0 0 1px white;
         }
     }
 </style>
