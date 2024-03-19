@@ -1,4 +1,5 @@
 <script lang=ts>
+    import { CloseButton } from '$lib';
     let open = false;
 
     interface Project {
@@ -12,6 +13,18 @@
     }
     
     export let options: Project;
+
+    function handleKeydown(event: { key: string; }) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            open = !open;
+        }
+    }
+
+    function handleClose() {
+        setTimeout(() => {
+            open = false;
+        }, 500); // Ensure this duration matches or exceeds the longest child animation.
+    }
 </script>
 
 
@@ -22,15 +35,11 @@
 </div>
 
 {#if open}    
-    <div class="overlay" on:click={() => open = false} />
+    <button class="overlay" on:click={() => open = !open} aria-label="Close Project">span</button>
         <div class='project-container'>
-            <button class='close' on:click={() => open = !open}>
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="24" cy="24" r="22" stroke="white" stroke-width="2"/>
-                    <line x1="16" y1="16" x2="32" y2="32" stroke="white" stroke-width="4"/>
-                    <line x1="16" y1="32" x2="32" y2="16" stroke="white" stroke-width="4"/>
-                </svg>
-            </button>
+            <div class='button-container'>
+                <CloseButton on:click={handleClose}/>
+            </div>
             <img class='project-image' src={options.image} alt={options.alt}/>
             <div class='info-container'>
                 <div class='title' >{options.name}</div>
@@ -70,8 +79,8 @@
             inset 0 0 0 3px white,
             inset 0 0 0 15px black,
             inset 0 0 0 16px white;
-        width: 300px;
-        height: 300px;
+        width: 250px;
+        height: 250px;
         margin: 20px;
         overflow: hidden;
         position: relative;
@@ -95,29 +104,25 @@
         position: absolute;
         top: 15%;
         left: 9vw;
-        height: 50vw;
+        max-height: 80%;
         width: 80vw;
         display: flex;
         z-index: 2;
-        .close {
+        .button-container {
             position: absolute;
             top: 1vh;
             right: 1vw;
-            svg:hover circle,
-            svg:hover line {
-                stroke: orange;
-            }
-            cursor: pointer; 
+            display: grid; 
         }
-
         .project-image {
             box-shadow:
                 inset 0 0 0 .2vw white,
                 inset 0 0 0 1vw black;
             padding: 1.2vw;
             border: white;
-            height: 70%;
-            margin: 2.5vw;
+            height: clamp(1px, 40vw, 60vh);
+            width: clamp(1px, 40vw, 60vh);
+            margin: 3vw;
             margin-right: 0;
         }
         .info-container {
@@ -126,12 +131,10 @@
             width: 34vw;
             padding: 3vw;
             gap: 20px;
-
         .title {
             font-family: 'Mourgen';
-            font-size: min(4rem, 4vw);
+            font-size: max(2rem, 3.6vw);
         }
-
         .links {
             display: flex;
             flex-direction: row;
@@ -139,7 +142,7 @@
         }
         .link {
             color: black;
-            font-size: 1rem;
+            font-size: clamp(0.8rem, 1.2vw, 1.3rem);
             background: orange;
             padding: 10px;
             border-radius: 5px;
@@ -148,30 +151,28 @@
             font-weight: 600;
             position: relative;
         }
-
         .blurb {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 1.2vw, 1.3rem);
             font-family: 'Caviar Dreams';
         }
-
         .tech-stack {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             padding: 0;
-            .tech-stack-item {
-                background: floralwhite;
-                border: orange solid 3px;
-                color: black;
-                border-radius: 20px;
-                padding: 6px;
-                margin: 5px;
-                font-family: "Caviar Dreams";
-                font-size: 0.9rem;
-                font-weight: 600;
+                .tech-stack-item {
+                    background: floralwhite;
+                    border: orange solid 3px;
+                    color: black;
+                    border-radius: 20px;
+                    padding: 6px;
+                    margin: 5px;
+                    font-family: "Caviar Dreams";
+                    font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+                    font-weight: 600;
+                }
             }
         }
-    }
     }
     button {
         background: transparent;
@@ -179,7 +180,34 @@
         color: white;
     }
 
-
-
-    
+    //REACTIVE STYLING
+    @media(max-width: 850px) {
+        .project-container {
+            flex-direction: column;
+            align-items: center;
+            overflow-y: scroll;
+            position: fixed;
+            text-align: center;
+            padding: 4vw;
+            padding-bottom: 0;
+            width: 72vw;
+            .project-image {
+                width: 30%;
+                min-width: 200px;
+            }
+            .info-container {
+                width: 90%;
+                .title {
+                    margin:auto;
+                }
+                .links {
+                    justify-content: center;
+                }
+            }
+        }
+        .project-icon {
+                width: min(80vw, 350px);
+                height: min(80vw, 350px);
+        }
+    }
 </style>
