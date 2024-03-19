@@ -1,18 +1,30 @@
+<!-- 
+TODO: fix weird scrolling behavior that pauses scroll at specific intervals
+-->
+
 <script>
-    import { codeProjects, Project } from "$lib";
+    import { codeProjects, Project } from '$lib';
 </script>
 
-<img class='logo' src='images/PROJECTS.png' alt='PROJECTS'>
-<div class='projects'>
-    {#each codeProjects as codeProject}
-        <Project options={codeProject}/>
-    {/each}
+<div class='main'>
+    <img class='projects-text' src='images/PROJECTS.png' alt='PROJECTS'>
+    <div class='projects'>
+        {#each codeProjects as codeProject}
+            <Project options={codeProject}/>
+        {/each}
+    </div>
 </div>
 
 <style lang=scss>
-    .logo {
+    .main {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .projects-text {
         width: min(80%, 70vh);
-        margin: 17vh auto
+        margin: 13vh auto;
     }
 
     .projects {
@@ -25,25 +37,45 @@
         box-sizing: border-box;
         max-height: 100vh;
         width: 90%;
-
-        scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: darkgray lightgray; /* For Firefox, scrollbar thumb and track */
-
-    /* Scrollbar track (background) */
-    .contents::-webkit-scrollbar-track {
-        background: white; /* Sets the track background to white */
-        border: 1px solid white; /* Optional: Adds a border to the scrollbar track */
-    }
-
-    /* Scrollbar thumb (the scrollable element that you interact with) */
-    .contents::-webkit-scrollbar-thumb {
-        background: orange; /* Sets the scrollbar thumb to orange */
-    }
-
-    /* Scrollbar width and height for vertical scrollbars */
-    .contents::-webkit-scrollbar {
-        width: 10px; /* Width of the vertical scrollbar */
-    }
-    }
-</style>
+        border-top: solid white;
     
+
+    &::-webkit-scrollbar {
+        height: 2px;
+        widows: 1px;
+        background: white;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: white;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: orange;
+    }
+}
+
+//REACTIVE STYLINGS
+@media (max-width: 850px) {
+    .project-icon {
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    .projects {
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+        height: fit-content;
+        border: none;
+        align-items: center;
+        padding: 0;
+    }
+    .projects-text {
+        margin: 10vw auto;
+    }
+    .main {
+        overflow-y: auto;
+        height: fit-content
+    }
+}
+</style>
