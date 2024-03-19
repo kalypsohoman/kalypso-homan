@@ -1,152 +1,143 @@
+<!-- TODO: make bio only clickable from ghost :oooo -->
+
 <script lang=ts>
-    import { onMount } from "svelte";
-    import {Contact, Resume, Bio} from '$lib';
-    export let tabs = ['Contact', 'Resume', 'Bio'];
-    export let activeTab: string;
-  
-    onMount(() => {
-      // Set default tab value
-      if (tabs.length) {
-        activeTab = tabs[0];
-      }
-    });
-  
-    const handleClick = (tab: string) => () => (activeTab = tab);
+    import {Contact, Resume, Bio, CloseButton, SocialMediaLinks} from '$lib';
+    export let activeTab: string = 'Contact';
+
+    let resumeOpen = false;
+
   </script>
   
-<div class='about-page page'>
+<div class='main'>
     <div class='col-1'>
         <img class='headshot' src='images/headshot.png' alt='headshot'/>
-        <div class='social-media-links'>
-            <a href="https://github.com/kalypsohoman" target="_blank">
-                <img src="images/github.png" alt="Link to my Github">
-            </a>
-            <a href="www.linkedin.com/in/kalypsohoman/" target="_blank">
-                <img src="images/linkedin.png" alt="Link to my LinkedIn">
-            </a>
-            <a href="https://www.instagram.com/kalypso_designs/" target="_blank">
-                <img src="images/instagram.png" alt="Link to my Instagram">
-            </a>
-        </div>
+        <SocialMediaLinks />
     </div>
+
     <div class='col-2'>
-        <ul>
-            {#each tabs as tab}
-                <li class={activeTab === tab ? 'active' : ''}>
-                    <button on:click={handleClick(tab)}>{tab}</button>
-                </li>
-            {/each}
-        </ul>
+
+        <div class='tab-container'>
+            <div class='tab' class:active={activeTab === 'Contact'}>
+                <button on:click={() => activeTab = 'Contact'}>Contact</button>
+            </div>
+            <div class='tab' class:active={activeTab === 'Resume'}>
+                <button on:click={() => activeTab = 'Resume'}>Resume</button>
+            </div>
+            {#if activeTab==='Resume'}
+                <button class='sub-tab' on:click={() => resumeOpen = true}>Open Larger</button>
+                <button
+                    class='sub-tab'
+                    on:click={() => window.open('kalypso-homan-resume.jpg', '_blank')}>
+                    Open in New Tab
+                </button>
+            {/if}
+        </div>
+
         <div class='contents'>
             {#if activeTab === 'Contact'}
                 <Contact/>
             {:else if activeTab === 'Resume'}
-                <Resume/>
+                <img class='resume' src='kalypso-homan-resume.jpg' alt='resume'/>
             {:else if activeTab === 'Bio'}
                 <Bio/>
             {/if}
         </div>
+        
+        {#if resumeOpen}
+            <div class='resume-pop-up'>
+                <img src='kalypso-homan-resume.jpg'
+                alt='resume'/>
+            </div>
+        {/if}
     </div>
 </div>
 
 
-<style>
-
-    /* MAIN CONTENT */
-    .about-page {
+<style lang='scss'>
+    .main {
         display: grid;
-        grid-template-columns: 2fr 3fr; /* Adjust column sizes as needed */
-        gap: 20px; /* Space between columns */
+        grid-template-columns: 2fr 3fr;
+        gap: 20px;
         align-items: start;
+        margin-top: 20px;
     }
-
-    /* FIRST COLUMN */
     .col-1 {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-
-     /* HEADSHOT */
      .headshot{
         max-width: 80%;
     }
 
-    /* SOCIAL MEDIA LINKS */
-    .social-media-links {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
-    a img {
-        display: block; /* Make the image a block element to remove extra space below */
-        max-width: 50%; /* Ensure the image is responsive and fits its container */
-        height: auto; /* Maintain the image's aspect ratio */
-        border: 0; /* Remove the default border that appears on some browsers for images inside links */
-        margin-top: 20px;
-        margin-inline: auto;
-    }
-
-    /* TABS */
-    ul {
+    .tab-container {
         display: flex;
         flex-wrap: wrap;
         padding-left: 0;
-        list-style: none;
     }
-
-    li {
+    .tab {
         width: 20%;
         cursor: pointer;
         border: 1px solid white;
         margin: 2%;
-        padding: 4%;
+        padding: 0;
         display: flex;
         justify-content: center;
     }
 
-    li.active {
-        border: 4px solid #ff9100;
-        padding: 4%;
+    .tab:hover {
+        border: solid 1px orange;
     }
-
-    li button {
+    .tab.active {
+        box-shadow: inset 0 0 0 2px orange;
+        border: solid orange 1px;
+    }
+    .tab button {
         background-color: transparent;
         border: none;
         color: white;
         font-family: 'Enigma Bold';
-        width: 100%;
         height: 100%;
+        padding: 2vw;
+        cursor: pointer;
     }
-
-    /* CONTENTS */
     .contents {
-        border: 1px solid #ccc; /* Adds a border to visualize the bounding box; adjust as needed */
-        height: 300px; /* Set a fixed height or use vh for a viewport relative height */
-        overflow-y: auto; /* Enables vertical scrolling if content overflows */
-        overflow-x: hidden; /* Hides horizontal overflow */
+        border: 1px solid #ccc;
+        height: fit-content;
+        max-height: 63vh;
+        overflow-y: auto;
+        overflow-x: hidden;
         margin: 20px;
-        
+        padding: 20px;
     }
-
-    /* Scrollbar track (background) */
     .contents::-webkit-scrollbar-track {
-        background: white; /* Sets the track background to white */
-        border: 1px solid white; /* Optional: Adds a border to the scrollbar track */
+        /* here in case you want to add stylings later */
     }
-
-    /* Scrollbar thumb (the scrollable element that you interact with) */
     .contents::-webkit-scrollbar-thumb {
-        background: orange; /* Sets the scrollbar thumb to orange */
+        background: orange;
     }
-
-    /* Scrollbar width and height for vertical scrollbars */
     .contents::-webkit-scrollbar {
-        width: 10px; /* Width of the vertical scrollbar */
+        width: 1px;
     }
 
-   
+    .resume {
+        width: 100%;
+    }
+
+    .resume-pop-up{
+        position: fixed;
+        top: 13vh;
+        left: 5vw;
+        width: 90vw;
+        height: auto;
+        z-index: 2;
+        border: solid white 1px;
+
+        .resume:hover {
+            cursor: pointer;
+        }
+    }
 </style>
 
