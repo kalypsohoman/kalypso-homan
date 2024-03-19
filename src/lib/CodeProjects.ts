@@ -11,7 +11,7 @@ export const codeProjects = [
     {
         name: 'Delightful Little Treat',
         image: 'images/projects/delightful-little-treat.png',
-        alt: 'ManHunt logo',
+        alt: 'Delightful little treat logo',
         description: 'A website where you can press a button to get a delightful little treat delivered to you.',
         techStack: ['TypeScript', 'Svelte', 'AWS', 'Google API', 'Stripe'],
         gitLink: 'https://github.com/kalypsohoman/delightful-little-treat',
@@ -20,7 +20,7 @@ export const codeProjects = [
     {
         name: 'JSF*ck',
         image: 'images/projects/jsf.png',
-        alt: 'ManHunt logo',
+        alt: 'JSF logo',
         description: 'A ongoing project to make a compiler that turns converts regular javascript into JS with just five characters, without losing the functionality of the code.',
         techStack: ['JavaScript'],
         gitLink: '',
@@ -29,18 +29,18 @@ export const codeProjects = [
     {
         name: 'HeadStrong',
         image: 'images/projects/Manhunt.jpeg',
-        alt: 'ManHunt logo',
+        alt: 'HeadStrong logo',
         description: 'HeadStrong is a stress-inducing mindfulness app.',
-        techStack: ['JavaScript', 'Node', 'mySQL', 'Sequelize', 'AWS', 'Express', 'Passport and Google auth', 'React', 'Material-UI'],
+        techStack: ['JavaScript', 'Node', 'mySQL', 'Sequelize', 'AWS', 'Express', 'Passport & Google auth', 'React', 'Material-UI'],
         gitLink: 'https://github.com/licensed-therapists/headstrong',
         link: undefined,
     },
     {
         name: 'Fellowship Finder',
         image: 'images/projects/Manhunt.jpeg',
-        alt: 'ManHunt logo',
+        alt: 'Fellowship Finder logo',
         description: 'Fellowship Finder is a web app that allows users to find and meet people with similar interests in games.',
-        techStack: ['JavaScript', 'Node', 'mySQL', 'Sequelize', 'AWS', 'Express', 'Passport and Google auth', 'React', 'Material-UI'],
+        techStack: ['JavaScript', 'Node', 'mySQL', 'Sequelize', 'AWS', 'Express', 'Passport & Google auth', 'React', 'Material-UI'],
         gitLink: 'https://github.com/party-cubed/fellowship-finder',
         link: undefined,
     }
