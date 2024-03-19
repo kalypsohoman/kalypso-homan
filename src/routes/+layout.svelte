@@ -3,10 +3,7 @@
 // @ts-nocheck
 
     import { page } from "$app/stores";
-    import { fly, scale } from 'svelte/transition';
-    import { quadOut } from 'svelte/easing';
     import { NavMenu } from "$lib";
-    let open = false;
 
     /**
 	 * @type {string | null}
@@ -26,10 +23,8 @@
         <a class={(currentPage === '/about') ? 'active' : ''} href={'/about'}>ABOUT</a>
     </div>
 </nav>
-
-<div class='main'>    
-    <slot/>
-</div>
+  
+<slot/>
 
 <style lang='scss'>
     nav {
@@ -57,6 +52,7 @@
                 display: flex;
                 font-family: "Mourgen", sans-serif;
                 font-size: 3rem;
+                margin-inline: 10px;
             }
 
             p{
