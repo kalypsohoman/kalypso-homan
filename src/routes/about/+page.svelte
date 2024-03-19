@@ -1,7 +1,7 @@
 <!-- TODO: make bio only clickable from ghost :oooo -->
 
 <script lang=ts>
-    import {Contact, Resume, Bio, CloseButton, SocialMediaLinks} from '$lib';
+    import {Contact, Bio, CloseButton, SocialMediaLinks} from '$lib';
     export let activeTab: string = 'Contact';
 
     let resumeOpen = false;
