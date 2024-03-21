@@ -1,5 +1,6 @@
 <script lang=ts>
     import { CloseButton } from '$lib';
+    import { quadInOut } from 'svelte/easing';
     let open = false;
 
     interface Project {
@@ -14,16 +15,33 @@
     
     export let options: Project;
 
-    function handleKeydown(event: { key: string; }) {
-        if (event.key === 'Enter' || event.key === ' ') {
-            open = !open;
-        }
+    function expand(node: HTMLSpanElement, { duration }: { duration: number }) {
+        const finalHeight = `${node.scrollHeight}px`; // Correctly capture the final height
+
+        return {
+            duration,
+            css: (t: number) => {
+                const eased = quadInOut(t);
+                const newHeight = eased * node.scrollHeight;
+                return `
+                    overflow: hidden;
+                    height: ${newHeight}px;
+                    transition: height ${duration}ms ease-in-out;
+                `;
+            },
+
+            // Adding a finalizing step to explicitly utilize finalHeight
+            end() {
+                node.style.height = finalHeight; // Apply the final height to maintain expanded state
+            }
+        };
     }
 
-    function handleClose() {
+    // Function delays close animation to let the button animation to play first
+    function delayedClose() {
         setTimeout(() => {
             open = false;
-        }, 500); // Ensure this duration matches or exceeds the longest child animation.
+        }, 250);
     }
 </script>
 
@@ -36,29 +54,29 @@
 
 {#if open}    
     <button class="overlay" on:click={() => open = !open} aria-label="Close Project">span</button>
-        <div class='project-container'>
-            <div class='button-container'>
-                <CloseButton on:click={handleClose}/>
-            </div>
-            <img class='project-image' src={options.image} alt={options.alt}/>
-            <div class='info-container'>
-                <div class='title' >{options.name}</div>
-                <div class='links' >
-                    {#if options.link}
-                        <a class='link' href={options.link}>View Website</a>
-                    {/if}
-                    {#if options.gitLink}
-                        <a class='link' href={options.gitLink}>View Code</a>
-                    {/if}
-                </div>
-                <div class='blurb' >{options.description}</div>
-                <ul class='tech-stack'>
-                    {#each options.techStack as techStackItem}
-                        <li class='tech-stack-item'>{techStackItem.toLowerCase()}</li>
-                    {/each}
-                </ul>
-            </div>
+    <div transition:expand={{duration: 500}} class='project-container'>
+        <div class='button-container'>
+            <CloseButton on:click={(delayedClose)}/>
         </div>
+        <img class='project-image' src={options.image} alt={options.alt}/>
+        <div class='info-container'>
+            <div class='title' >{options.name}</div>
+            <div class='links' >
+                {#if options.link}
+                    <a class='link' href={options.link}>View Website</a>
+                {/if}
+                {#if options.gitLink}
+                    <a class='link' href={options.gitLink}>View Code</a>
+                {/if}
+            </div>
+            <div class='blurb' >{options.description}</div>
+            <ul class='tech-stack'>
+                {#each options.techStack as techStackItem}
+                    <li class='tech-stack-item'>{techStackItem.toLowerCase()}</li>
+                {/each}
+            </ul>
+        </div>
+    </div>
 {/if}
 
 <style lang='scss'>
@@ -152,7 +170,7 @@
             position: relative;
         }
         .blurb {
-            font-size: clamp(1rem, 1.2vw, 1.3rem);
+            font-size: clamp(1rem, 1.22vw, 1.4rem);
             font-family: 'Caviar Dreams';
         }
         .tech-stack {
@@ -168,7 +186,7 @@
                     padding: 6px;
                     margin: 5px;
                     font-family: "Caviar Dreams";
-                    font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+                    font-size: clamp(0.7rem, 1.4vw, 1rem);
                     font-weight: 600;
                 }
             }
@@ -193,15 +211,25 @@
             width: 72vw;
             .project-image {
                 width: 30%;
+                height: fit-content;
                 min-width: 200px;
+                margin: 0;
             }
             .info-container {
                 width: 90%;
                 .title {
                     margin:auto;
+                    font-size: clamp(1.7rem, 10vw, 3rem);
                 }
                 .links {
                     justify-content: center;
+                    gap: min(40px, 6vw);
+                    .link {
+                        font-size: clamp(0.7rem, 1.2vw, 1.3rem);
+                    }
+                }
+                .tech-stack {
+                    margin-top: 0;
                 }
             }
         }
