@@ -1,5 +1,8 @@
 <!-- 
-TODO: fix weird scrolling behavior that pauses scroll at specific intervals
+    TODO: 
+
+    1. Fix weird scrolling behavior that pauses scroll at specific intervals
+    2. Scrolling down should still move the projects in non mobile mode.
 -->
 
 <script>
