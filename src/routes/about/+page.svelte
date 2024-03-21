@@ -113,6 +113,7 @@
     .resume-sub-tab {
         box-shadow: inset 0 0 0 1px orange;
         font-weight: 400;
+        text-wrap: nowrap;
         }
     .contents {
         border: 1px solid #ccc;
@@ -132,18 +133,19 @@
     .resume {
         width: 100%;
     }
-    .resume-pop-up{
-        position: fixed;
-        top: 13vh;
-        left: 5vw;
-        width: 90vw;
-        height: auto;
-        z-index: 2;
-        border: solid white 1px;
+    
+    // .resume-pop-up{
+    //     position: fixed;
+    //     top: 13vh;
+    //     left: 5vw;
+    //     width: 90vw;
+    //     height: auto;
+    //     z-index: 2;
+    //     border: solid white 1px;
 
-        .resume:hover {
-            cursor: pointer;
-        }
-    }
+    //     .resume:hover {
+    //         cursor: pointer;
+    //     }
+    // }
 </style>
 
