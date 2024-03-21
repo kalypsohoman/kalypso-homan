@@ -28,7 +28,7 @@ export const codeProjects = [
     },
     {
         name: 'HeadStrong',
-        image: 'images/projects/Manhunt.jpeg',
+        image: 'images/projects/manhunt.jpg',
         alt: 'HeadStrong logo',
         description: 'HeadStrong is a stress-inducing mindfulness app.',
         techStack: ['JavaScript', 'Node', 'mySQL', 'Sequelize', 'AWS', 'Express', 'Passport & Google auth', 'React', 'Material-UI'],
@@ -37,7 +37,7 @@ export const codeProjects = [
     },
     {
         name: 'Fellowship Finder',
-        image: 'images/projects/Manhunt.jpeg',
+        image: 'images/projects/manhunt.jpg',
         alt: 'Fellowship Finder logo',
         description: 'Fellowship Finder is a web app that allows users to find and meet people with similar interests in games.',
         techStack: ['JavaScript', 'Node', 'mySQL', 'Sequelize', 'AWS', 'Express', 'Passport & Google auth', 'React', 'Material-UI'],
