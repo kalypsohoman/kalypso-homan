@@ -39,7 +39,7 @@
 <button class="overlay" on:click={() => dispatch('close')} aria-label="Close Project"/>
 <div class='pop-up'  transition:expand={{duration: 500}} >
     <div class='button-container'>
-        <CloseButton on:click={(delayedClose)}/>
+        <CloseButton on:close={(delayedClose)}/>
     </div>
     <slot/>
 </div>
