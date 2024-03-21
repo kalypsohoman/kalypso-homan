@@ -1,14 +1,8 @@
 <script lang="ts">
     import { quadInOut } from "svelte/easing";
     import { createEventDispatcher } from 'svelte';
-    export let visible: boolean = true;
 
     const dispatch = createEventDispatcher();
-
-    function handleClick() {
-        visible = false;
-        dispatch('click');
-    }
 
     function spin(node: HTMLSpanElement, {duration, rotate}: {duration: number, rotate: number}) {
 		return {
@@ -23,18 +17,16 @@
 	}
 </script>
 
-{#if visible}
-    <button
-        class='close'
-        aria-label={'close'}
-        on:click={handleClick}
-        >
-        <span class="close-box">
-            <span class="close-inner first-line" out:spin={{ duration: 500, rotate: 125 }}/>
-            <span class="close-inner second-line" out:spin={{ duration: 500, rotate: 205 }}/>
-        </span>
-    </button>
-{/if}
+<button
+    class='close'
+    aria-label={'close'}
+    on:click={() => dispatch('close')}
+    >
+    <span class="close-box">
+        <span class="close-inner first-line" out:spin={{ duration: 500, rotate: 125 }}/>
+        <span class="close-inner second-line" out:spin={{ duration: 500, rotate: 205 }}/>
+    </span>
+</button>
 
 <style lang="scss">
     .close{
