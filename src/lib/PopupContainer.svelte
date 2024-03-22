@@ -3,6 +3,8 @@
     import { CloseButton } from "$lib";
     import { createEventDispatcher } from 'svelte';
 
+    export let display: string = 'flex';
+
     const dispatch = createEventDispatcher();
 
     function expand(node: HTMLSpanElement, { duration }: { duration: number }) {
@@ -36,8 +38,8 @@
 
 </script>
 
-<button class="overlay" on:click={() => dispatch('close')} aria-label="Close Project"/>
-<div class='pop-up'  transition:expand={{duration: 500}} >
+<button class="overlay" on:click={() => dispatch('close')} aria-label='Close Project' style='display: {display};'/>
+<div class='pop-up'  transition:expand={{duration: 500}} style='display: {display};'>
     <div class='button-container'>
         <CloseButton on:close={(delayedClose)}/>
     </div>
@@ -53,7 +55,6 @@
         width: 100vw;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
         justify-content: center;
         align-items: center;
         z-index: 1;
@@ -67,8 +68,8 @@
         left: 9vw;
         max-height: 80%;
         width: 80vw;
-        display: flex;
         z-index: 2;
+        overflow: auto;
         
         .button-container {
             position: absolute;
