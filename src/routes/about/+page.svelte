@@ -2,45 +2,43 @@
 
 
 <script lang=ts>
-    import {Contact, Bio, CloseButton, SocialMediaLinks} from '$lib';
+    import {Contact, Poem, PopupContainer, SocialMediaLinks} from '$lib';
 	import { quadInOut } from 'svelte/easing';
     import { slide } from 'svelte/transition';
-    export let activeTab: string = 'Contact';
-
+    
+    let activeTab = 'Contact';
     let resumeOpen = false;
 
   </script>
   
 <div class='main'>
-    <div class='col-1'>
+    <div class='section-1'>
         <img class='headshot' src='images/headshot.png' alt='headshot'/>
         <SocialMediaLinks />
     </div>
-
-    <div class='col-2'>
-
+    <div class='section-2'>
         <div class='tab-container'>
-                <button
-                    class='tab'
-                    class:active={activeTab === 'Contact'}
-                    on:click={() => activeTab = 'Contact'}>Contact
-                </button>
-                <button
-                    class='tab resume-tab'
-                    class:active={activeTab === 'Resume'}
-                    on:click={() => activeTab = 'Resume'}>Resume
+            <button
+                class='tab'
+                class:active={activeTab === 'Contact'}
+                on:click={() => activeTab = 'Contact'}>Contact
+            </button>
+            <button
+                class='tab resume-tab'
+                class:active={activeTab === 'Resume'}
+                on:click={() => activeTab = 'Resume'}>Resume
             </button>
 
             {#if activeTab==='Resume'}
                 <button
-                    class='resume-sub-tab tab'
+                    class='resume-sub-tab tab open-larger'
                     on:click={() => resumeOpen = true}
-                    transition:slide={{ delay: 0, duration: 300, easing: quadInOut, axis: 'x' }}>Open Larger
+                    transition:slide={{ delay: 0, duration: 300, easing: quadInOut, axis: 'x' }}>Open<br/>Larger
                 </button>
                 <button
                     class='resume-sub-tab tab'
                     on:click={() => window.open('kalypso-homan-resume.jpg', '_blank')}
-                    transition:slide={{ delay: 0, duration: 600, easing: quadInOut, axis: 'x' }}>Open in New Tab
+                    transition:slide={{ delay: 0, duration: 600, easing: quadInOut, axis: 'x' }}>Open in<br/>New Tab
                 </button>
             {/if}
         </div>
@@ -49,19 +47,22 @@
             {#if activeTab === 'Contact'}
                 <Contact/>
             {:else if activeTab === 'Resume'}
-                <img class='resume' src='kalypso-homan-resume.jpg' alt='resume'/>
-            {:else if activeTab === 'Bio'}
-                <Bio/>
+                <button on:click={() => resumeOpen = true}>
+                    <img class='resume' src='kalypso-homan-resume.jpg' alt='resume'/>
+                </button>
+            {:else if activeTab === 'Poem'}
+                <Poem/>
             {/if}
         </div>
         
         {#if resumeOpen}
-            <div class='resume-pop-up'>
-                <img src='kalypso-homan-resume.jpg'
+            <PopupContainer on:close={() => resumeOpen = false} display='none'>
+                <img class='pop-up-resume' src='kalypso-homan-resume.jpg'
                 alt='resume'/>
-            </div>
+            </PopupContainer>
         {/if}
     </div>
+    <button class='secret-button' on:click={() => activeTab = 'Poem'} />
 </div>
 
 
@@ -73,7 +74,7 @@
         align-items: start;
         margin-top: 20px;
     }
-    .col-1 {
+    .section-1 {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -133,19 +134,65 @@
     .resume {
         width: 100%;
     }
-    
-    // .resume-pop-up{
-    //     position: fixed;
-    //     top: 13vh;
-    //     left: 5vw;
-    //     width: 90vw;
-    //     height: auto;
-    //     z-index: 2;
-    //     border: solid white 1px;
 
-    //     .resume:hover {
-    //         cursor: pointer;
-    //     }
-    // }
+    .pop-up-resume {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .secret-button {
+        height: 5vw;
+        width: 5vw;
+        top: calc(23vw + 70px);
+        left: 26.5%;
+        position: absolute;
+        cursor: pointer;
+    }
+
+    //REACTIVE STYLINGS
+
+    @media(max-width: 850px) {
+        .main {
+            flex-direction: column;
+            display: flex;
+            margin: 0;
+        }
+        .section-1 {
+            display: flex;
+            flex-direction: row;
+            img {
+                max-width: 60%;
+                margin-left: 3%;
+                margin-top: 2%;
+            }
+        }
+
+        .contents {
+            width: 86vw;
+        }
+
+        .tab-container {
+            margin: 20px;
+            margin-top: -40px;
+            height: 11vw;
+            gap: 11%;
+            .tab {
+                margin: 0;
+                width: 26%;
+            }
+
+            .open-larger {
+                display: none;
+            }
+        }
+        .secret-button {
+            height: 8vw;
+            width: 8vw;
+            top: calc(44vw + 70px);
+            left: 47%;
+            position: absolute;
+            cursor: pointer;
+        }
+    }
 </style>
 
