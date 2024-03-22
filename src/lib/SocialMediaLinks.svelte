@@ -16,13 +16,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 20px;
         & img {
             display: block;
             max-width: 50%;
             height: auto;
             border: 0;
-            margin-top: 20px;
             margin-inline: auto;
+        }
+    }
+
+    @media(max-width: 850px) {
+        .social-media-links {
+            gap: 10vw;
+            margin: 0px;
+            flex-direction: column;
+            & img {
+                max-width: 40%;
+            }
         }
     }
 </style>
