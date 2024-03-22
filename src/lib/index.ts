@@ -1,4 +1,4 @@
-export {default as Bio} from "./Bio.svelte";
+export {default as Poem} from "./Poem.svelte";
 export {default as CloseButton} from "./CloseButton.svelte";
 export {default as Contact} from "./Contact.svelte";
 export {default as NavMenu} from "./NavMenu.svelte";
