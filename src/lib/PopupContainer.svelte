@@ -3,9 +3,14 @@
     import { CloseButton } from "$lib";
     import { createEventDispatcher } from 'svelte';
 
-    export let display: string = 'flex';
+    export let type: string | undefined = undefined;
 
-    const dispatch = createEventDispatcher();
+    // if this is the resume, then don't show the popup on mobile displays. 
+    if (type === 'resume') {                                      
+        document.documentElement.style.setProperty('--popup-mobile-display', 'none');  
+    } else {
+        document.documentElement.style.setProperty('--popup-mobile-display', 'flex');
+    }
 
     function expand(node: HTMLSpanElement, { duration }: { duration: number }) {
         const finalHeight = `${node.scrollHeight}px`; // Correctly capture the final height
@@ -29,6 +34,8 @@
         };
     }
 
+    const dispatch = createEventDispatcher();
+
     // Function delays close animation to let the button animation to play first
     function delayedClose() {
         setTimeout(() => {
@@ -38,8 +45,8 @@
 
 </script>
 
-<button class="overlay" on:click={() => dispatch('close')} aria-label='Close Project' style='display: {display};'/>
-<div class='pop-up'  transition:expand={{duration: 500}} style='display: {display};'>
+<button class="overlay" on:click={() => dispatch('close')} aria-label='Close Project'/>
+<div class='pop-up'  transition:expand={{duration: 500}}>
     <div class='button-container'>
         <CloseButton on:close={(delayedClose)}/>
     </div>
@@ -47,7 +54,6 @@
 </div>
 
 <style lang='scss'>
-    
     .overlay {
         position: fixed;
         top: 0;
@@ -70,6 +76,7 @@
         width: 80vw;
         z-index: 2;
         overflow: auto;
+        display: flex;
         
         .button-container {
             position: absolute;
@@ -81,6 +88,10 @@
 
     //REACTIVE STYLING
     @media(max-width: 850px) {
+        .overlay{
+            display: var(--popup-mobile-display);
+        }
+
         .pop-up {
             flex-direction: column;
             align-items: center;
@@ -90,6 +101,7 @@
             padding: 4vw;
             padding-bottom: 0;
             width: 72vw;
+            display: var(--popup-mobile-display);
         }
     }
 </style>
