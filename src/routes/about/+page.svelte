@@ -5,9 +5,33 @@
     import {Contact, Poem, PopupContainer, SocialMediaLinks} from '$lib';
 	import { quadInOut } from 'svelte/easing';
     import { slide } from 'svelte/transition';
+    import { onMount } from 'svelte'
     
     let activeTab = 'Contact';
     let resumeOpen = false;
+
+    function openResume() {
+        if(window.innerWidth <= 850) { // only open the resume if the window is big enough
+            return;
+        } else {
+            resumeOpen = true;
+        }
+    }
+
+    // If the window gets too small, close the resume
+    function closeResumeOnResizeToMobile() {
+        if (window.innerWidth <= 850) {
+            resumeOpen = false;
+        }
+    }
+
+    onMount( () => {
+        window.addEventListener('resize', closeResumeOnResizeToMobile);
+        return () => {
+            window.removeEventListener('resize', closeResumeOnResizeToMobile);
+        }
+    } )
+
 
   </script>
   
@@ -47,7 +71,7 @@
             {#if activeTab === 'Contact'}
                 <Contact/>
             {:else if activeTab === 'Resume'}
-                <button on:click={() => resumeOpen = true}>
+                <button on:click={openResume}>
                     <img class='resume' src='kalypso-homan-resume.jpg' alt='resume'/>
                 </button>
             {:else if activeTab === 'Poem'}
@@ -56,7 +80,7 @@
         </div>
         
         {#if resumeOpen}
-            <PopupContainer on:close={() => resumeOpen = false} display='none'>
+            <PopupContainer on:close={() => resumeOpen = false} type='resume'>
                 <img class='pop-up-resume' src='kalypso-homan-resume.jpg'
                 alt='resume'/>
             </PopupContainer>
@@ -166,11 +190,9 @@
                 margin-top: 2%;
             }
         }
-
         .contents {
-            width: 86vw;
+            width: 76vw;
         }
-
         .tab-container {
             margin: 20px;
             margin-top: -40px;
