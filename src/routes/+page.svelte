@@ -64,10 +64,10 @@
         display: flex;
         flex-direction: column;
         overflow: visible;
-        height: fit-content;
         border: none;
         align-items: center;
         padding: 0;
+        max-height: fit-content;
     }
     .projects-text {
         margin: 10vw auto;
