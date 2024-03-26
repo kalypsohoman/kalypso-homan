@@ -1,12 +1,41 @@
 <!-- 
     TODO: 
-
-    1. Fix weird scrolling behavior that pauses scroll at specific intervals
-    2. Scrolling down should still move the projects in non mobile mode.
+    1. Fix scrolling left within page navigates back instead of scrolling in project div.
 -->
 
 <script>
     import { codeProjects, Project } from '$lib';
+    import { onMount } from 'svelte';
+
+    /**
+	 * @param {{ deltaX: any; deltaY: any; preventDefault: () => void; }} e
+	 */
+    function handleWheelEvent(e) {
+        const projectsDiv = document.querySelector('.projects');
+        if (projectsDiv) {
+            // Calculate the scroll amount
+            const scrollAmountX = e.deltaX;
+            const scrollAmountY = e.deltaY;
+
+            if (scrollAmountX !== 0) {
+                projectsDiv.scrollLeft += scrollAmountX;
+            }
+            // Only prevent default actions if we're scrolling in the Y direction
+            if (scrollAmountY !==0) {
+                e.preventDefault();
+                projectsDiv.scrollLeft += scrollAmountY
+            }
+        }
+    }
+
+    onMount(() => {
+        // Listen for the "wheel" event on the entire window
+        window.addEventListener('wheel', handleWheelEvent, { passive: false });
+        return () => {
+            window.removeEventListener('wheel', handleWheelEvent);
+        };
+    });
+
 </script>
 
 <div class='main'>
