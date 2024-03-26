@@ -1,6 +1,6 @@
 export const codeProjects = [
     {
-        name: 'ManHunt',
+        name: 'MANHUNT',
         image: 'images/projects/manhunt.jpg',
         alt: 'ManHunt logo',
         description: 'An AR bounty hunting game where players race each other to capture a "suspect" using their phone cameras and facial recognition ai.',
@@ -9,7 +9,7 @@ export const codeProjects = [
         link: 'https://manhuntar.com/',
     },
     {
-        name: 'Delightful Little Treat',
+        name: 'DELIGHTFUL LITTLE TREAT',
         image: 'images/projects/delightful-little-treat.png',
         alt: 'Delightful little treat logo',
         description: 'A website where you can press a button to get a delightful little treat delivered to you.',
@@ -18,17 +18,8 @@ export const codeProjects = [
         link: 'delightfullittletreat.com',
     },
     {
-        name: 'JSF*ck',
-        image: 'images/projects/jsf.png',
-        alt: 'JSF logo',
-        description: 'A ongoing project to make a compiler that turns converts regular javascript into JS with just five characters, without losing the functionality of the code.',
-        techStack: ['JavaScript'],
-        gitLink: '',
-        link: undefined,
-    },
-    {
-        name: 'HeadStrong',
-        image: 'images/projects/manhunt.jpg',
+        name: 'HEADSTRONG',
+        image: 'images/projects/headstrong.jpg',
         alt: 'HeadStrong logo',
         description: 'HeadStrong is a stress-inducing mindfulness app.',
         techStack: ['JavaScript', 'Node', 'mySQL', 'Sequelize', 'AWS', 'Express', 'Passport & Google auth', 'React', 'Material-UI'],
@@ -36,12 +27,21 @@ export const codeProjects = [
         link: undefined,
     },
     {
-        name: 'Fellowship Finder',
-        image: 'images/projects/manhunt.jpg',
+        name: 'FELLOWSHIP FINDER',
+        image: 'images/projects/fellowship-finder.jpg',
         alt: 'Fellowship Finder logo',
         description: 'Fellowship Finder is a web app that allows users to find and meet people with similar interests in games.',
         techStack: ['JavaScript', 'Node', 'mySQL', 'Sequelize', 'AWS', 'Express', 'Passport & Google auth', 'React', 'Material-UI'],
         gitLink: 'https://github.com/party-cubed/fellowship-finder',
+        link: undefined,
+    },
+    {
+        name: 'JSF*CK',
+        image: 'images/projects/jsf.png',
+        alt: 'JSF logo',
+        description: 'A ongoing project to make a compiler that turns converts regular javascript into JS with just five characters, without losing the functionality of the code.',
+        techStack: ['JavaScript'],
+        gitLink: undefined,
         link: undefined,
     }
 ]
