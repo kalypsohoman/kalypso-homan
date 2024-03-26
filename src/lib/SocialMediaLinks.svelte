@@ -19,7 +19,7 @@
             margin-top: 20px;
         & img {
             display: block;
-            max-width: 50%;
+            max-width: min(50%, 100px);
             height: auto;
             border: 0;
             margin-inline: auto;
