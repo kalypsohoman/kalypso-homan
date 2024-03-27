@@ -31,9 +31,6 @@
             gap: 10vw;
             margin: 0px;
             flex-direction: column;
-            & img {
-                max-width: 40%;
-            }
         }
     }
 </style>

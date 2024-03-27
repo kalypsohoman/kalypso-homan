@@ -92,15 +92,17 @@
         display: grid;
         grid-template-columns: 2fr 3fr;
         align-items: start;
-        margin-top: 20px;
     }
     .section-1 {
         display: flex;
+        height: 100%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         .headshot{
            max-width: 80%;
+           max-height: 70vh;
+           
        }
     }
 
@@ -144,10 +146,12 @@
             }
         .contents {
             border: 1px solid #ccc;
-            height: 70vh;
+            height: min(70vh, 95vw);
             overflow-y: auto;
             overflow-x: hidden;
             padding: 20px;
+            display: flex;
+            justify-content: center;
             &::-webkit-scrollbar-thumb {
                 background: orange;
             }
@@ -178,26 +182,31 @@
 
     @media(max-width: 850px) {
         .main {
-            flex-direction: column;
-            display: flex;
             margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .section-1 {
             display: flex;
             flex-direction: row;
-            img {
+            .headshot {
                 max-width: 60%;
-                margin-left: 3%;
-                margin-top: 2%;
+                margin: 4%;
+                margin-left: 12%;
+                margin-bottom: 0;
             }
+        }
+        .section-2 {
+            margin: 0;
+
         }
         .contents {
             width: 76vw;
         }
         .tab-container {
-            margin: 20px;
-            margin-top: -40px;
-            height: 11vw;
+            margin-top: 10px;
+            margin-bottom: 10px;
             gap: 11%;
             .tab {
                 margin: 0;
