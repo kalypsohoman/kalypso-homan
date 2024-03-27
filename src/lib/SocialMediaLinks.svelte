@@ -2,7 +2,7 @@
     <a class='social-media-link github' href="https://github.com/kalypsohoman" target="_blank">
         <img src="images/icons/github.png" alt="Link to my Github">
     </a>
-    <a class='social-media-link linkedin' href="www.linkedin.com/in/kalypsohoman/" target="_blank">
+    <a class='social-media-link linkedin' href="http://www.linkedin.com/in/kalypsohoman/" target="_blank">
         <img src="images/icons/linkedin.png" alt="Link to my LinkedIn">
     </a>
     <a class='social-media-link instagram' href="https://www.instagram.com/kalypso_designs/" target="_blank">
