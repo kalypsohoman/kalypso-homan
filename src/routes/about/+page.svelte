@@ -58,7 +58,7 @@
                 </button>
                 <button
                     class='resume-sub-tab tab'
-                    on:click={() => window.open('kalypso-homan-resume.jpg', '_blank')}
+                    on:click={() => window.open('kalypso-homan-resume.png', '_blank')}
                     transition:slide={{ delay: 0, duration: 600, easing: quadInOut, axis: 'x' }}>Open in<br/>New Tab
                 </button>
             {/if}
@@ -69,7 +69,7 @@
                 <Contact/>
             {:else if activeTab === 'Resume'}
                 <button on:click={openResume}>
-                    <img class='resume' src='kalypso-homan-resume.jpg' alt='resume'/>
+                    <img class='resume' src='kalypso-homan-resume.png' alt='resume'/>
                 </button>
             {:else if activeTab === 'Poem'}
                 <Poem/>
@@ -78,7 +78,7 @@
         
         {#if resumeOpen}
             <PopupContainer on:close={() => resumeOpen = false} type='resume'>
-                <img class='pop-up-resume' src='kalypso-homan-resume.jpg'
+                <img class='pop-up-resume' src='kalypso-homan-resume.png'
                 alt='resume'/>
             </PopupContainer>
         {/if}
