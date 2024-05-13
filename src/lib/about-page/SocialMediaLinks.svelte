@@ -14,12 +14,12 @@
     .social-media-links {
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
             align-items: center;
             margin-top: 20px;
         & img {
             display: block;
-            max-width: min(50%, 100px);
+            max-width: min(70%, 100px);
             height: auto;
             border: 0;
             margin-inline: auto;
