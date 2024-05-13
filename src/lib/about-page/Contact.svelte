@@ -1,71 +1,40 @@
-<div class='contact'>
-    <h1>Want to work on something together?</h1>
-    <div class='email-box'>
-        <h3>email:</h3>
-        <p>kalypsohoman@gmail.com</p>
-    </div>
-</div>
+<!-- <script lang="ts">
+    import { browser } from '$app/environment'; // Import this only if you need to check if you're running on the client side
     
+    let name: string = 'test';
+    let email: string = 'test@test.com';
+    let message: string = 'test2';
 
-<style lang="scss">
-    .contact {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        height: 80%;
-    }
+    async function handleSubmit() {
+        if (browser) { // Ensures this code runs only in the browser
 
-    .email-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
+            // Prepare the form data
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('message', message);
 
-<!-- <script lang='ts'>
-    let name: string = '';
-    let email: string = '';
-    let message: string = '';
-
-    function handleSubmit() {
-        
-        if(message.length < 500 ) {
-
+            // Send the form data to SvelteKit server endpoint
+            try {
+                const response = await fetch('?/submit', {
+                method: 'POST',
+                body: formData
+                });
+                
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                
+                const result = await response.json();
+                console.log(result)
+            } catch (error) {
+                console.error('Error:', error);
+            }
         }
     }
-
-	export let form: any;
-
-
-
-
 </script>
 
-
-<form method="POST" action="?/login">
-	{#if form?.missing}<p class="error">Please complete the form before sending.</p>{/if}
-	{#if form?.incorrect}<p class="error">Invalid credentials!</p>{/if}
-	<label>
-		Email
-		<input name="email" type="email" value={form?.email ?? ''}>
-	</label>
-	<label>
-		Password
-		<input name="password" type="password">
-	</label>
-	<button>Log in</button>
-	<button formaction="?/register">Register</button>
-</form>
-
-{#if form?.success}
-	<!-- this message is ephemeral; it exists because the page was rendered in
-		   response to a form submission. it will vanish if the user reloads -->
-	<!-- <p>Message Sent!</p>
-{/if} -->
-
-<!-- <form on:submit|preventDefault={handleSubmit}>
+<form on:submit|preventDefault={handleSubmit}>
     <div class='header'>
         <h3>Want to work on something together?</h3>
         <h1>Send me a message!</h1>
@@ -86,9 +55,9 @@
         {/if}
     </div>
     <button type="submit">Send</button>
-</form> -->
+</form>
 
-<!-- <style lang="scss">
+<style lang="scss">
     form {
         display: flex;
         flex-direction: column;
@@ -160,5 +129,67 @@
             font-family: "Caviar Dreams";
             font-size: 1.2rem;
         }
+    }
+</style> -->
+
+
+
+<script>
+    export let form;
+</script>
+
+<div class="wrapper">
+    <fieldset>
+        <legend>Send Emails</legend>
+        <form method="POST" class="container">
+            <div class="input">
+                <label for="">To:</label>
+                <input name="to" type="email" value="hello@crocodaily.com" />
+            </div>
+            <div class="input">
+                <label for="">Subject:</label>
+                <input name="subject" type="text" value="" />
+            </div>
+            <div class="input">
+                <label for="">Body:</label>
+                <textarea name="body" rows="6" value="" />
+            </div>
+            <button type="submit">Send</button>
+        </form>
+        <p class="success">{form?.success || ""}</p>
+    </fieldset>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <div class='contact'>
+    <h1>Want to work on something together?</h1>
+    <div class='email-box'>
+        <h3>email:</h3>
+        <p>kalypsohoman@gmail.com</p>
+    </div>
+</div>
+    
+
+<style lang="scss">
+    .contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 80%;
+    }
+
+    .email-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 </style> -->

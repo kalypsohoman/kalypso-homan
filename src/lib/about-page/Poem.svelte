@@ -30,7 +30,7 @@
         "The stars putter and watch their feet,",
         "contrite, abashed, one gestures to a sign.",
         "“No solicitation”",
-        "As I burst to know, “Where the fuck is he?”",
+        "And I burst to know, “Where the fuck is he?”",
         "",
         "I see them pretending not to stare.",
         "I move slowly so as to not scare them, and breathe:",
