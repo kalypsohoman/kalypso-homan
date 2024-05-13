@@ -66,14 +66,23 @@
         "to find his shape again.",
         "",
         "Perhaps you just need now,",
-        "and to let the stars crash in."
+        "and to let the stars crash in.",
+        "",
+        ""
     ]
 </script>
 
+<div class='poem'>
+  {#each poem as line}
+    {#if (line === '')}
+      <br/>
+    {/if}
+    <p>{line}</p>
+  {/each}
+</div>
 
-{#each poem as line}
-  {#if (line === '')}
-    <br/>
-  {/if}
-  <p>{line}</p>
-{/each}
+<style>
+  .poem {
+    padding: 10px;
+  }
+</style>
