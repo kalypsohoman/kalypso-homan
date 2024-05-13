@@ -149,7 +149,6 @@
             height: min(70vh, 95vw);
             overflow-y: auto;
             overflow-x: hidden;
-            padding: 20px;
             display: flex;
             justify-content: center;
             &::-webkit-scrollbar-thumb {
@@ -172,8 +171,8 @@
     .secret-button {
         height: 5vw;
         width: 5vw;
-        top: calc(23vw + 70px);
-        left: 26.5%;
+        top: 42.5%;
+        left: 28%;
         position: absolute;
         cursor: pointer;
     }
