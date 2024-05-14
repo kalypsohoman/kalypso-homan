@@ -17,6 +17,8 @@
             justify-content: space-evenly;
             align-items: center;
             margin-top: 20px;
+            margin: 0px;
+            flex-direction: column;
         & img {
             display: block;
             max-width: min(70%, 100px);
@@ -28,9 +30,11 @@
 
     @media(max-width: 850px) {
         .social-media-links {
-            gap: 10vw;
             margin: 0px;
             flex-direction: column;
+            & img {
+                max-width: min(50%, 100px);
+            }
         }
     }
 </style>
