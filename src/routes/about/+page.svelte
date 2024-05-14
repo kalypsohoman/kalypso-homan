@@ -34,8 +34,17 @@
   
 <div class='main'>
     <div class='section-1'>
-        <img class='headshot' src='images/headshot.png' alt='headshot'/>
-        <SocialMediaLinks />
+        <div class='images'>
+            <img class='headshot' src='images/headshot.png' alt='headshot'/>
+            <SocialMediaLinks />
+        </div>
+        <div class='about-blurb'>
+            <h1>Hey! I'm Kalypso. </h1>
+            <p> I'm a software developer who likes talking to people and eating delicious soup.
+                This is a site that lets you look through some of my projects.
+                Please reach out if you want to know more.
+            </p>
+        </div>
     </div>
     <div class='section-2'>
         <div class='tab-container'>
@@ -99,10 +108,26 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        .images {
+            display: flex;
+            flex-direction: row;
+        }
         .headshot{
            max-width: 80%;
-           max-height: 70vh;
-           
+           max-height: 50vh;
+           margin-left: 20px;
+       }
+       .about-blurb{
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        max-width: min(70vw, 400px);
+        & h1 {
+            text-align: center;
+        }
+        & p {
+            text-align: justify;
+        }
        }
     }
 
@@ -178,7 +203,6 @@
     }
 
     //REACTIVE STYLINGS
-
     @media(max-width: 850px) {
         .main {
             margin: 0;
@@ -195,25 +219,30 @@
                 margin-left: 12%;
                 margin-bottom: 0;
             }
+            .about-blurb {
+                max-width: 40vw;
+            }
         }
         .section-2 {
             margin: 0;
-
-        }
-        .contents {
-            width: 76vw;
-        }
-        .tab-container {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            gap: 11%;
-            .tab {
-                margin: 0;
-                width: 26%;
+            .contents {
+                width: 76vw;
+                height: fit-content;
+                margin-bottom: 30px;
+                align-items: start;
             }
-
-            .open-larger {
-                display: none;
+            .tab-container {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                gap: 11%;
+                .tab {
+                    margin: 0;
+                    width: 26%;
+                }
+    
+                .open-larger {
+                    display: none;
+                }
             }
         }
         .secret-button {
@@ -224,6 +253,17 @@
             position: absolute;
             cursor: pointer;
         }
+    }
+
+    @media(max-width: 700px) {
+        .section-1 {
+            display: flex;
+            flex-direction: column;
+            .about-blurb {
+                max-width: min(70vw);
+            }
+        }
+
     }
 </style>
 
