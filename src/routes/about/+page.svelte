@@ -35,7 +35,15 @@
 <div class='main'>
     <div class='section-1'>
         <div class='images'>
-            <img class='headshot' src='images/headshot.png' alt='headshot'/>
+            <div class='headshot-container'>
+                {#if activeTab === 'Poem'}
+                    <img class='headshot' src='images/headshot2.png' alt='headshot'/>
+                    
+                {:else}
+                    <img class='headshot' src='images/headshot.png' alt='headshot'/>
+                {/if}
+                <button class='secret-button' on:click={() => activeTab = 'Poem'} />
+            </div>
             <SocialMediaLinks />
         </div>
         <div class='about-blurb'>
@@ -108,15 +116,26 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        position: relative;
         .images {
             display: flex;
             flex-direction: row;
         }
-        .headshot{
-           max-width: 80%;
-           max-height: 50vh;
-           margin-left: 20px;
-       }
+        .headshot-container {
+            position: relative;
+            margin-left: 20px;
+            .headshot{
+               max-height: 50vh;
+           }
+            .secret-button {
+                height: 40px;
+                width: 40px;
+                top: 44%;
+                left: 77%;
+                position: absolute;
+                cursor: pointer;
+            }
+        }
        .about-blurb{
         display: flex;
         flex-direction: column;
@@ -193,14 +212,7 @@
         height: fit-content;
     }
 
-    .secret-button {
-        height: 5vw;
-        width: 5vw;
-        top: 42.5%;
-        left: 28%;
-        position: absolute;
-        cursor: pointer;
-    }
+
 
     //REACTIVE STYLINGS
     @media(max-width: 850px) {
@@ -213,11 +225,10 @@
         .section-1 {
             display: flex;
             flex-direction: row;
-            .headshot {
-                max-width: 60%;
-                margin: 4%;
-                margin-left: 12%;
-                margin-bottom: 0;
+            .headshot-container{
+                max-width: 70%;
+
+
             }
             .about-blurb {
                 max-width: 40vw;
@@ -245,25 +256,25 @@
                 }
             }
         }
-        .secret-button {
-            height: 8vw;
-            width: 8vw;
-            top: calc(44vw + 70px);
-            left: 47%;
-            position: absolute;
-            cursor: pointer;
-        }
     }
+    
 
     @media(max-width: 700px) {
         .section-1 {
             display: flex;
             flex-direction: column;
+            .headshot-container {
+                max-width: 70%;
+                .headshot {
+                    max-width: 100%;
+                }
+            }
             .about-blurb {
                 max-width: min(70vw);
             }
         }
 
     }
+
 </style>
 
