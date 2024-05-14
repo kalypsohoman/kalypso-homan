@@ -12,10 +12,8 @@
 
 <style lang="scss">
     .social-media-links {
-            width: 100%;
             display: flex;
             justify-content: space-evenly;
-            align-items: center;
             margin-top: 20px;
             margin: 0px;
             flex-direction: column;
@@ -30,10 +28,9 @@
 
     @media(max-width: 850px) {
         .social-media-links {
-            margin: 0px;
-            flex-direction: column;
             & img {
                 max-width: min(50%, 100px);
+            
             }
         }
     }
