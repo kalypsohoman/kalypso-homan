@@ -18,6 +18,7 @@ export const actions = {
             const instagramIcon = await readFileAsync('static/images/icons/instagram.png');
             const linkedinIcon = await readFileAsync('static/images/icons/linkedin.png');
 
+
             // Read the form data
             const formData = await request.formData();
             const name = formData.get("name")?.toString();
@@ -25,10 +26,11 @@ export const actions = {
             const subject = formData.get("subject")?.toString();
             const body = formData.get("body")?.toString();
             let html;
-
+            
             // If the form data was not submitted, throw an Error
             if(!name || !email || !subject || !body){
-                throw new Error("Email form wasn't complete upon submission.");
+                console.error("Form data is incomplete:", { name, email, subject, body });
+                return { error: "Form data is incomplete. Please fill in all required fields." };
             }
 
             // Generate the html for the email
@@ -99,7 +101,21 @@ export const actions = {
                 success: "Email is sent",
             };
         } catch (error) {
-            console.error(error);
+            console.error("Error processing request:", error);
+
+            if (error instanceof Error) {
+                if (error.name === 'SyntaxError') {
+                    return { error: "Invalid data format. Please check your input and try again." };
+                } else if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+                    return { error: "One or more files required to send the email were not found." };
+                } else if (error.message.includes("Email form wasn't complete upon submission.")) {
+                    return { error: "Form data is incomplete. Please fill in all required fields." };
+                } else {
+                    return { error: "An unexpected error occurred. Please try again later." };
+                }
+            } else {
+                return { error: "An unknown error occurred. Please try again later." };
+            }
         }
     }
 };
