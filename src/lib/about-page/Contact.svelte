@@ -1,31 +1,59 @@
 <script lang="ts">
     let body: string = '';
+    let successMessage: string = '';
+    let errorMessage: string = '';
+
+    const handleSubmit = async (event: Event) => {
+        event.preventDefault();
+        const form = event.target as HTMLFormElement;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('/about', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if(response.ok) {
+                successMessage = 'Success, message sent';
+            } else {
+                throw new Error('Error sending message, please try again later.')
+            }
+        } catch(error) {
+            console.error('Error submitting form:', error);
+            errorMessage = 'Error sending message, please try again later.';
+        }
+        }
 </script>
-
-    <form method="POST" class="container">
-        <div class="input">
-            <label for="name">Name</label>
-            <input name="name" type="text" value="" required />
-        </div>
-        <div class="input">
-            <label for="email">Email</label>
-            <input name="email" type="email" value="" required />
-        </div>
-        <div class="input">
-            <label for="subject">Subject</label>
-            <input name="subject" type="text" value="" required />
-        </div>
-        <div class="input">
-            <label for="body">Message
-                {#if body.length > 500}
-                    <label for="body" class='char-count'>{body.length - 500 + ' characters over limit'} </label>
-                {/if}
-            </label>
-            <textarea name="body" rows="6" bind:value={body} required />
-        </div>
-        <button type="submit">Send</button>
-    </form>
-
+    {#if successMessage}
+        <p>{successMessage}</p>
+    {:else if errorMessage}
+        <p>{errorMessage}</p>
+    {:else}
+        <form method="POST" class="container" on:submit={handleSubmit}>
+            <div class="input">
+                <label for="name">Name</label>
+                <input name="name" type="text" value="" required />
+            </div>
+            <div class="input">
+                <label for="email">Email</label>
+                <input name="email" type="email" value="" required />
+            </div>
+            <div class="input">
+                <label for="subject">Subject</label>
+                <input name="subject" type="text" value="" required />
+            </div>
+            <div class="input">
+                <label for="body">Message
+                    {#if body.length > 500}
+                        <label for="body" class='char-count'>{body.length - 500 + ' characters over limit'} </label>
+                    {/if}
+                </label>
+                <textarea name="body" rows="6" bind:value={body} required />
+            </div>
+            <button type="submit">Send</button>
+        </form>
+    {/if}
 
 <style lang="scss">
     form {
