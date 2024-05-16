@@ -15,13 +15,13 @@
             });
 
             if(response.ok) {
-                successMessage = 'Success, message sent';
+                successMessage = `Thanks for sending your message. I'll get back to you soon.`;
             } else {
-                throw new Error('Error sending message, please try again later.')
+                throw new Error('Oops, there was an error sending the message. Please try again later.')
             }
         } catch(error) {
             console.error('Error submitting form:', error);
-            errorMessage = 'Error sending message, please try again later.';
+            errorMessage = 'Oops, there was an error sending the message. Please try again later.';
         }
         }
 </script>
